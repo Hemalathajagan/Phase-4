@@ -1,0 +1,27 @@
+import matplotlib.pyplot as plt
+import pandas as pd
+
+# Load your energy consumption data into a DataFrame (replace 'your_data.csv' with your data file)
+data = pd.read_csv('your_data.csv')
+
+# Assuming your data has a 'Date' column for time and an 'Energy' column for consumption
+date_column = 'Date'
+energy_column = 'Energy'
+
+# Convert the 'Date' column to a datetime format
+data[date_column] = pd.to_datetime(data[date_column])
+
+# Sort the data by date, in case it's not already sorted
+data = data.sort_values(by=date_column)
+
+# Create a line plot to visualize energy consumption over time
+plt.figure(figsize=(12, 6))
+plt.plot(data[date_column], data[energy_column], label='Energy Consumption', color='blue')
+plt.xlabel('Date')
+plt.ylabel('Energy Consumption')
+plt.title('Energy Consumption Over Time')
+plt.legend()
+plt.grid(True)
+
+# Show the plot or save it to a file
+plt.show()
